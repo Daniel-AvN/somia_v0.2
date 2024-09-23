@@ -1,3 +1,15 @@
+// Carga el modelo
+let model;
+(async function () {
+    try {
+        model = await tf.loadGraphModel('model/model.json');
+        console.log('Modelo cargado exitosamente', model);
+    } catch (error) {
+        console.error('Error al cargar el modelo:', error);
+    }
+})();
+
+// Procesa la imagen y realiza la predicción
 document.getElementById('image-input').addEventListener('change', function (event) {
     const file = event.target.files[0];
     const reader = new FileReader();
