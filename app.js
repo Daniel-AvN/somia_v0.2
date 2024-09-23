@@ -10,7 +10,7 @@ let model;
 })();
 
 // Procesa la imagen y realiza la predicción
-document.getElementById('upload-image').addEventListener('change', function (event) {
+document.getElementById('image-input').addEventListener('change', function (event) {
     const file = event.target.files[0];
     const reader = new FileReader();
     reader.onload = function () {
@@ -27,11 +27,14 @@ document.getElementById('upload-image').addEventListener('change', function (eve
                 // Predicción
                 const predictions = await model.predict(tensor).data();
                 console.log('Predicciones:', predictions);
+                
+                // Muestra el resultado en el div #result
+                document.getElementById('result').innerHTML = `Predicciones: ${predictions}`;
             } catch (error) {
                 console.error('Error al hacer la predicción:', error);
             }
         };
-        document.body.appendChild(img);
+        document.getElementById('selected-image').src = reader.result;  // Muestra la imagen seleccionada
     };
     reader.readAsDataURL(file);
 });
