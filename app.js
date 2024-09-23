@@ -3,7 +3,7 @@ let model;
 (async function () {
     try {
         model = await tf.loadGraphModel('model/model.json');
-        console.log('Modelo cargado exitosamente');
+        console.log('Modelo cargado exitosamente', model);
     } catch (error) {
         console.error('Error al cargar el modelo:', error);
     }
